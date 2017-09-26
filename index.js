@@ -1,0 +1,1 @@
+module.exports = trackbone = require('./src/Trackbone');
