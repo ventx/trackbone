@@ -14,25 +14,35 @@ class Trackbone {
 
 
 	constructor() {
-		let m = new moment();
-		let dayOfWeek = m.format('E');
-		let time = m.format('HH:mm');
-		this.fetchInstances(dayOfWeek, time).then((actionMap) => {
-			if (actionMap.shouldStart.length > 0) {
-				ec2.startInstances({
-					InstanceIds: actionMap.shouldStart,
-					DryRun: false
-				}, (err, data) => {
-				});
-			}
-			if (actionMap.shouldStop.length > 0) {
-				ec2.stopInstances({
-					InstanceIds: actionMap.shouldStop,
-					DryRun: false
-				}, (err, data) => {
-				});
-			}
-		}).catch((err) => console.log(err));
+	}
+
+	/**
+	 * Runs trackbone
+	 * @return {Promise}
+	 */
+	run(){
+		return new Promise((resolve, reject) => {
+			let m = new moment();
+			let dayOfWeek = m.format('E');
+			let time = m.format('HH:mm');
+			this.fetchInstances(dayOfWeek, time).then((actionMap) => {
+				if (actionMap.shouldStart.length > 0) {
+					ec2.startInstances({
+						InstanceIds: actionMap.shouldStart,
+						DryRun: false
+					}, (err, data) => {
+					});
+				}
+				if (actionMap.shouldStop.length > 0) {
+					ec2.stopInstances({
+						InstanceIds: actionMap.shouldStop,
+						DryRun: false
+					}, (err, data) => {
+					});
+				}
+				resolve(actionMap);
+			}).catch((err) => reject(err));
+		});
 	}
 
 	/**

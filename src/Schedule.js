@@ -25,7 +25,7 @@ class Schedule {
 					acc[val.uptimeIdentifier] = val;
 					return acc;
 				}, {});
-			let scheduleDefinitions = bone.match(/(Mo|Tu|We|Th|Fr|Sa|Su)#[a-zA-Z0-9_]*+/g);
+			let scheduleDefinitions = bone.match(/(Mo|Tu|We|Th|Fr|Sa|Su)#([a-zA-Z0-9_]*)+/g);
 			if (scheduleDefinitions) {
 				scheduleDefinitions = scheduleDefinitions.map(s => new ScheduleDefinition(uptimeDefinitions, s));
 			}
