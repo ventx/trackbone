@@ -1,0 +1,18 @@
+{
+  "opts": {
+    "readme": "./README.md",
+    "destination": "./jsdoc"
+  },
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc","closure"]
+  },
+  "source": {
+    "include": ["src"]
+  },
+  "plugins": ["plugins/markdown"],
+  "templates": {
+    "cleverlinks": false,
+    "monospaceLinks": false
+  }
+}

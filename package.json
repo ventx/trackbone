@@ -4,7 +4,8 @@
   "description": "Automated aws ec2 instance uptime handling with tags",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "jsdoc": "./node_modules/.bin/jsdoc -c jsdoc-conf.json"
   },
   "keywords": [
     "aws",
@@ -31,6 +32,8 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "eslint": "^4.7.2",
+    "jsdoc": "^3.5.5",
     "mocha": "^3.5.3"
   },
   "bin": {

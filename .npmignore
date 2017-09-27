@@ -1,3 +1,6 @@
 lambda.js
 .[iI]dea
 .travis.yml
+.editorconf
+.eslintrc.json
+jsdoc
