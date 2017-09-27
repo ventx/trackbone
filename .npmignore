@@ -3,4 +3,4 @@ lambda.js
 .travis.yml
 .editorconf
 .eslintrc.json
-jsdoc
+docs
