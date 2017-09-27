@@ -1,7 +1,8 @@
+const Trackbone = require('./src/Trackbone');
+
 exports.handler = function(event, context, callback) {
-	let trackbone = require('./src/Trackbone');
-	let tr = new trackbone();
+	let tr = new Trackbone();
 	tr.run()
 		.then((actionMap) => callback(null, actionMap))
-		.catch((err) => callback(555, err));
+		.catch((err) => callback(err));
 };
