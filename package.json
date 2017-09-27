@@ -18,6 +18,10 @@
     "automatic",
     "tag"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com:ventx/trackbone.git"
+  },
   "author": "Wolfgang Felbermeier <wolfgang@ventx.de>",
   "license": "MIT",
   "dependencies": {
