@@ -1,5 +1,5 @@
 {
-  "name": "trackbone",
+  "name": "@ventx/trackbone",
   "version": "0.0.1",
   "description": "Automated aws ec2 instance uptime handling with tags",
   "main": "index.js",
