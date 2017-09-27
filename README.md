@@ -1,6 +1,11 @@
 # trackbone
 trackbone is a nodejs package to parse aws tags and control of AWS EC2 instance uptime.
 
+```
+    npm install -g trackbone    #for cli usage (just launch "trackbone" in the cli)
+    npm install trackbone
+```
+
 ## How can i use it?
 The framework collects the tags of all instances running in an account and searches for the trackbone
 tag ("trackbone", "Trackbone" or "TRACKBONE"). You should include it in your lambda function and trigger it regularly.
