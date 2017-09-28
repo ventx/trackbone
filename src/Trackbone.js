@@ -1,5 +1,5 @@
 const Schedule = require('./Schedule');
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 const AWS = require('aws-sdk');
 const ec2 = new AWS.EC2();
@@ -8,12 +8,18 @@ const ec2 = new AWS.EC2();
  * The Trackbone class. Fetches all running or stopped instances
  * from your AWS Account with a trackbone tag,
  * analyses the tag and starts and stops the instances according to the definition
+ *
+ * Uses UTC as default timezone. When you set the environment variable TIMEZONE,
+ * this value will be used instead.
  * @author Wolfgang Felbermeier <wolfgang@ventx.de>
  */
 class Trackbone {
 
-
-	constructor() {
+	/**
+	 * @param {string} timezone The timezone trackbone should use
+	 */
+	constructor(timezone) {
+		this.timezone = timezone;
 	}
 
 	/**
@@ -22,7 +28,7 @@ class Trackbone {
 	 */
 	run(){
 		return new Promise((resolve, reject) => {
-			let m = new moment();
+			let m = new moment().tz(process.env.TIMEZONE || this.timezone || 'UTC');
 			let dayOfWeek = m.format('E');
 			let time = m.format('HH:mm');
 			this.fetchInstances(dayOfWeek, time).then((actionMap) => {
@@ -77,7 +83,9 @@ class Trackbone {
 				} else if (data.Reservations[0] && data.Reservations[0].Instances) {
 					let actionMap = {
 						shouldStart: [],
-						shouldStop: []
+						shouldStop: [],
+						dayOfWeek: dayOfWeek,
+						time: time
 					};
 					data.Reservations[0].Instances.map(instance => {
 						let instanceRunning = (instance.State.Code === 16);

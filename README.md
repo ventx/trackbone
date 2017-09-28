@@ -3,8 +3,8 @@ trackbone is a nodejs package to parse aws tags and control of AWS EC2 instance 
 
 [![Build Status](https://travis-ci.org/ventx/trackbone.svg?branch=master)](https://travis-ci.org/ventx/trackbone)
 
-```
-    #for cli usage (just launch "trackbone" in the cli): 
+```bash
+    # for cli usage (just launch "trackbone" in the cli): 
     npm install -g @ventx/trackbone
     
     # or just the package for your project:
@@ -17,6 +17,16 @@ trackbone is a nodejs package to parse aws tags and control of AWS EC2 instance 
     tb.run();
     
 ```
+
+## As an AWS Lambda function
+```bash
+    git clone https://github.com/ventx/trackbone.git
+    cd trackbone
+    npm install
+    zip -r lambda.zip 'lambda.js' './node_modules' './src'
+``` 
+Now you can use the created lambda.zip for your lambda function. Use "lambda.handler" as the Handler.  
+**Important:** Set the environment variable "TIMEZONE" to your timezone. Else trackbone will work with UTC. 
 
 ## How can i use it?
 The framework collects the tags of all instances running in an account and searches for the trackbone
